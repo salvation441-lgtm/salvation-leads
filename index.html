@@ -1,59 +1,82 @@
 <!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Salvation Leads - Ghana</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FREE Demo - Salvation Tech Hub</title>
 <style>
-*{box-sizing:border-box;font-family:sans-serif}
-body{margin:0;padding:16px;background:#f6f7fb}
-h1{font-size:22px;font-weight:900;margin:0}
-.sub{font-size:13px;color:#666;margin:4px 0 14px}
-.box{background:#fff;padding:14px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:14px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:6px}
-.row{display:flex;gap:8px}.row>*{flex:1}
-.btn{width:100%;padding:13px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:10px}
-.g{background:#22c55e;color:#fff}.b{background:#0f172a;color:#fff}.red{background:#ef4444;color:#fff}
-.lead{padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;font-size:13px}
-.badge{background:#e8f5e9;color:#2e7d32;padding:3px 8px;border-radius:12px;font-size:11px;font-weight:700}
-</style></head><body>
-<h1>SALVATION LEADS</h1>
-<div class="sub">Capture customers - MTN / Telecel optimized</div>
-<div class="box">
-<h3 style="margin:0 0 8px">Add New Lead</h3>
-<label>Name</label><input id="name" placeholder="Kwame Mensah">
-<div class="row">
-<div><label>Phone</label><input id="phone" placeholder="055..."></div>
-<div><label>Interest</label><select id="interest"><option>Football Tips</option><option>FastNet</option><option>Business</option><option>Other</option></select></div>
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#0a0f2a;color:#fff}
+.ghana-bar{height:10px;background:linear-gradient(90deg,#CE1126 0%,#CE1126 20%,#FCD116 20%,#FCD116 40%,#006B3F 40%,#006B3F 60%,#000 60%,#000 80%,#CE1126 80%)}
+.wrap{max-width:480px;margin:0 auto;padding:14px}
+.badge{background:linear-gradient(90deg,#FFD60A,#FF6B35);color:#000;font-weight:900;padding:10px 16px;border-radius:30px;display:inline-block;font-size:13px;letter-spacing:.5px}
+h1{font-size:42px;line-height:0.95;margin:18px 0 8px;font-weight:900;text-transform:uppercase}
+h1.blue{color:#5AB8FF} h1.green{color:#6EFF8A}
+.sub{color:#9bb0ff;font-size:14px;font-weight:600;margin-bottom:16px}
+.alert{border:1px solid #ff6b8a;background:rgba(255,107,138,.12);border-radius:16px;padding:14px;text-align:center;margin-bottom:18px}
+.alert b{color:#ffb3c1}
+.card{background:#121a3d;border:1px solid #22306e;border-radius:20px;padding:16px}
+.card h2{color:#5AB8FF;font-size:16px;margin:0 0 12px}
+label{font-size:12px;font-weight:700;margin:12px 0 6px;display:block;opacity:.9}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;border:1px solid #2a3a85;background:#0f1940;color:#fff;font-size:14px}
+input::placeholder,textarea::placeholder{color:#6b7ab8}
+.btn{width:100%;padding:16px;background:#22c55e;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:16px;margin-top:16px;cursor:pointer}
+.leads-box{margin-top:18px;background:#fff;color:#111;border-radius:16px;padding:12px}
+.lead-item{border-bottom:1px solid #eee;padding:8px 0;font-size:13px;display:flex;justify-content:space-between}
+.small{font-size:11px;color:#888}
+</style>
+</head>
+<body>
+<div class="ghana-bar"></div>
+<div class="wrap">
+<div class="badge">FIRST 5 FREE • DANSOMAN • ACCRA 🇬🇭</div>
+<h1>GET YOUR<br><span class="blue">SHOP</span> <span class="green">ONLINE</span><br>IN 24 HOURS!</h1>
+<div class="sub">Salvation Tech Hub dey build FREE demo store for first 5 businesses. No payment until you like am!</div>
+
+<div class="alert">
+🔥 <b>3 SLOTS LEFT TODAY</b> — Offer ends when 5 full!<br>
+<span style="color:#ff8da1;font-weight:800">Dansoman shops only!</span>
 </div>
-<label>Note</label><input id="note" placeholder="Wants VIP">
-<button class="btn g" onclick="addLead()">Save Lead</button>
+
+<div class="card">
+<h2>👋 CLAIM YOUR FREE DEMO NOW:</h2>
+<label>Business Name *</label><input id="biz" placeholder="e.g. Auntie Akos Fashion">
+<label>What You Sell? *</label><select id="sell"><option>Fashion Shop</option><option>Electronics</option><option>Food / Restaurant</option><option>Beauty / Cosmetics</option><option>Phone Accessories</option><option>Other</option></select>
+<label>Your WhatsApp Number *</label><input id="wa" placeholder="e.g. 0540 042 669">
+<label>Location in Accra *</label><input id="loc" placeholder="e.g. Dansoman Control, Sakaman">
+<label>How Many Products? (approx)</label><input id="prod" placeholder="e.g. 20, 50">
+<button class="btn" onclick="claim()">CLAIM MY FREE DEMO →</button>
+<div class="small" style="text-align:center;margin-top:8px">No spam. We go WhatsApp you within 2 hours.</div>
 </div>
-<div class="box">
-<div style="display:flex;justify-content:space-between;align-items:center">
-<h3 style="margin:0">Leads (<span id="count">0</span>)</h3>
-<button onclick="exportCSV()" style="padding:6px 10px;border-radius:8px;border:1px solid #ddd;background:#fff;font-size:12px">Export CSV</button>
+
+<div class="leads-box">
+<b>Leads Captured: <span id="cnt">0</span></b> <button onclick="exportCSV()" style="float:right;font-size:11px;padding:4px 8px;border-radius:8px;border:1px solid #ddd">Export</button>
+<div id="list" style="margin-top:10px"><div style="text-align:center;color:#999;padding:12px">No leads yet</div></div>
 </div>
-<div id="list" style="margin-top:10px"><div style="text-align:center;color:#999;padding:20px">No leads yet</div></div>
-<button class="btn red" onclick="clearAll()" style="margin-top:12px">Clear All</button>
 </div>
+
 <script>
-let leads=JSON.parse(localStorage.getItem('sal_leads')||'[]');
-function addLead(){
- const n=document.getElementById('name').value.trim();
- const p=document.getElementById('phone').value.trim();
- if(!n||!p){alert('Put name and phone');return;}
- const l={id:Date.now(),name:n,phone:p,interest:document.getElementById('interest').value,note:document.getElementById('note').value,time:new Date().toLocaleString()};
- leads.unshift(l);localStorage.setItem('sal_leads',JSON.stringify(leads));
- document.getElementById('name').value='';document.getElementById('phone').value='';document.getElementById('note').value='';
- render();alert('Lead saved: '+n);
+let leads=JSON.parse(localStorage.getItem('sal_free_demo')||'[]');
+function claim(){
+ const b=document.getElementById('biz').value.trim();
+ const w=document.getElementById('wa').value.trim();
+ const l=document.getElementById('loc').value.trim();
+ if(!b||!w||!l){alert('Fill Business Name, WhatsApp and Location');return;}
+ const d={id:Date.now(),biz:b,sell:document.getElementById('sell').value,wa:w,loc:l,prod:document.getElementById('prod').value,time:new Date().toLocaleString()};
+ leads.unshift(d);localStorage.setItem('sal_free_demo',JSON.stringify(leads));
+ let msg=`Hello Salvation Tech Hub! FREE DEMO claim:%0A%0ABusiness: ${b}%0ASells: ${d.sell}%0AWhatsApp: ${w}%0ALocation: ${l}%0AProducts: ${d.prod}`;
+ window.open(`https://wa.me/233540042669?text=${msg}`,'_blank');
+ render();
+ document.getElementById('biz').value='';document.getElementById('wa').value='';document.getElementById('loc').value='';document.getElementById('prod').value='';
 }
 function render(){
- document.getElementById('count').textContent=leads.length;
+ document.getElementById('cnt').textContent=leads.length;
  const el=document.getElementById('list');
- if(leads.length==0){el.innerHTML='<div style="text-align:center;color:#999;padding:20px">No leads yet</div>';return;}
- el.innerHTML=leads.map(l=>`<div class="lead"><div><b>${l.name}</b> - ${l.phone}<br><small>${l.interest} | ${l.time}${l.note?' | '+l.note:''}</small></div><div><span class="badge">New</span><br><button onclick="del(${l.id})" style="margin-top:4px;font-size:11px;color:#ef4444;border:none;background:none">Delete</button></div></div>`).join('');
+ if(!leads.length){el.innerHTML='<div style="text-align:center;color:#999;padding:12px">No leads yet</div>';return;}
+ el.innerHTML=leads.map(x=>`<div class="lead-item"><div><b>${x.biz}</b> (${x.sell})<br>${x.wa} | ${x.loc}<br><span class="small">${x.time}</span></div><div><button onclick="del(${x.id})" style="color:red;border:none;background:none;font-size:11px">Delete</button></div></div>`).join('');
 }
-function del(id){leads=leads.filter(l=>l.id!=id);localStorage.setItem('sal_leads',JSON.stringify(leads));render();}
-function clearAll(){if(confirm('Clear all?')){leads=[];localStorage.removeItem('sal_leads');render();}}
-function exportCSV(){if(leads.length==0){alert('No leads');return;}let csv='Name,Phone,Interest,Note,Time\n'+leads.map(l=>`"${l.name}","${l.phone}","${l.interest}","${l.note}","${l.time}"`).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='salvation_leads.csv';a.click();}
+function del(id){leads=leads.filter(x=>x.id!=id);localStorage.setItem('sal_free_demo',JSON.stringify(leads));render();}
+function exportCSV(){if(!leads.length){alert('No leads');return;}let csv='Business,WhatSell,WhatsApp,Location,Products,Time\n'+leads.map(x=>`"${x.biz}","${x.sell}","${x.wa}","${x.loc}","${x.prod}","${x.time}"`).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='free_demo_leads.csv';a.click();}
 render();
 </script>
-</body></html>
+</body>
+</html>
