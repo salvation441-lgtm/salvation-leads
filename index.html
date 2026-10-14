@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salvation Leads - Ghana</title>
+<style>
+*{box-sizing:border-box;font-family:sans-serif}
+body{margin:0;padding:16px;background:#f6f7fb}
+h1{font-size:22px;font-weight:900;margin:0}
+.sub{font-size:13px;color:#666;margin:4px 0 14px}
+.box{background:#fff;padding:14px;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:14px}
+input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:6px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.btn{width:100%;padding:13px;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin-top:10px}
+.g{background:#22c55e;color:#fff}.b{background:#0f172a;color:#fff}.red{background:#ef4444;color:#fff}
+.lead{padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;font-size:13px}
+.badge{background:#e8f5e9;color:#2e7d32;padding:3px 8px;border-radius:12px;font-size:11px;font-weight:700}
+</style></head><body>
+<h1>SALVATION LEADS</h1>
+<div class="sub">Capture customers - MTN / Telecel optimized</div>
+<div class="box">
+<h3 style="margin:0 0 8px">Add New Lead</h3>
+<label>Name</label><input id="name" placeholder="Kwame Mensah">
+<div class="row">
+<div><label>Phone</label><input id="phone" placeholder="055..."></div>
+<div><label>Interest</label><select id="interest"><option>Football Tips</option><option>FastNet</option><option>Business</option><option>Other</option></select></div>
+</div>
+<label>Note</label><input id="note" placeholder="Wants VIP">
+<button class="btn g" onclick="addLead()">Save Lead</button>
+</div>
+<div class="box">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h3 style="margin:0">Leads (<span id="count">0</span>)</h3>
+<button onclick="exportCSV()" style="padding:6px 10px;border-radius:8px;border:1px solid #ddd;background:#fff;font-size:12px">Export CSV</button>
+</div>
+<div id="list" style="margin-top:10px"><div style="text-align:center;color:#999;padding:20px">No leads yet</div></div>
+<button class="btn red" onclick="clearAll()" style="margin-top:12px">Clear All</button>
+</div>
+<script>
+let leads=JSON.parse(localStorage.getItem('sal_leads')||'[]');
+function addLead(){
+ const n=document.getElementById('name').value.trim();
+ const p=document.getElementById('phone').value.trim();
+ if(!n||!p){alert('Put name and phone');return;}
+ const l={id:Date.now(),name:n,phone:p,interest:document.getElementById('interest').value,note:document.getElementById('note').value,time:new Date().toLocaleString()};
+ leads.unshift(l);localStorage.setItem('sal_leads',JSON.stringify(leads));
+ document.getElementById('name').value='';document.getElementById('phone').value='';document.getElementById('note').value='';
+ render();alert('Lead saved: '+n);
+}
+function render(){
+ document.getElementById('count').textContent=leads.length;
+ const el=document.getElementById('list');
+ if(leads.length==0){el.innerHTML='<div style="text-align:center;color:#999;padding:20px">No leads yet</div>';return;}
+ el.innerHTML=leads.map(l=>`<div class="lead"><div><b>${l.name}</b> - ${l.phone}<br><small>${l.interest} | ${l.time}${l.note?' | '+l.note:''}</small></div><div><span class="badge">New</span><br><button onclick="del(${l.id})" style="margin-top:4px;font-size:11px;color:#ef4444;border:none;background:none">Delete</button></div></div>`).join('');
+}
+function del(id){leads=leads.filter(l=>l.id!=id);localStorage.setItem('sal_leads',JSON.stringify(leads));render();}
+function clearAll(){if(confirm('Clear all?')){leads=[];localStorage.removeItem('sal_leads');render();}}
+function exportCSV(){if(leads.length==0){alert('No leads');return;}let csv='Name,Phone,Interest,Note,Time\n'+leads.map(l=>`"${l.name}","${l.phone}","${l.interest}","${l.note}","${l.time}"`).join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='salvation_leads.csv';a.click();}
+render();
+</script>
+</body></html>
